@@ -1,13 +1,13 @@
 import ogImage from "./og-image.js";
 
-const CANONICAL_HOST = "ason.pw";
+const CANONICAL_HOST = "www.ason.pw";
 
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     const local = url.hostname === "localhost" || url.hostname === "127.0.0.1";
 
-    // One permanent redirect to https://ason.pw for http:// and www. requests,
+    // One permanent redirect to https://www.ason.pw for http:// and bare-domain requests,
     // so search engines only ever see a single version of each URL.
     if (!local && (url.hostname !== CANONICAL_HOST || url.protocol !== "https:")) {
       url.protocol = "https:";
