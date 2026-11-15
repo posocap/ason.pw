@@ -9,7 +9,7 @@ Landing page for ason.pw, deployed as its own Worker (`ason-pw`), distinct from 
 
 `src/index.js` runs in front of the assets and does two things:
 
-- 301-redirects `http://` and `www.ason.pw` requests to `https://ason.pw` in a single hop, so only one version of each URL exists.
+- 301-redirects `http://` and bare `ason.pw` requests to `https://www.ason.pw` in a single hop, so only one version of each URL exists.
 - serves the 1200×630 share image at `/og.png` (stored as base64 in `src/og-image.js`).
 
 ## Deploy
