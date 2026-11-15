@@ -570,13 +570,13 @@ body { display: flex; justify-content: center; align-items: center; width: 100%;
 
 .cuadro-l__bottom, .cuadro-r__bottom { background-color: rgb(56, 51, 88); }
 
-.cuadro-l__front { background-image: url("/room/poster-atlas-movie.jpg"); background-size: cover; background-color: #0b1a24; border: 0.5vw solid #0b1a24; }
+.cuadro-l__front { background-image: url("/room/poster-atlas-movie.jpg"); background-size: cover; background-color: #0b1a24; border: 0.5vw solid #0b1a24; animation: poster-l 16s steps(1) infinite; }
 
 .cuadro-l__front::before { content: ""; position: absolute; top: -1vw; left: -1vw; width: 5vw; height: 7vw; background-origin: padding-box; background-image: linear-gradient(rgba(40, 125, 210, 0.15), rgba(40, 125, 210, 0.15)); }
 
 .cuadro-r { left: 20vw; }
 
-.cuadro-r__front { background-image: url("/room/poster-passion.jpg"); background-size: cover; background-color: #f4efe6; border: 0.5vw solid #f4efe6; }
+.cuadro-r__front { background-image: url("/room/poster-passion.jpg"); background-size: cover; background-color: #f4efe6; border: 0.5vw solid #f4efe6; animation: poster-r 24s steps(1) infinite; }
 
 .cuadro-r__front::before { content: ""; position: absolute; top: -0.5vw; left: -0.5vw; width: 5vw; height: 7vw; background-origin: padding-box; background-image: linear-gradient(rgba(40, 125, 210, 0.15), rgba(40, 125, 210, 0.15)); }
 
@@ -890,7 +890,16 @@ body { display: flex; justify-content: center; align-items: center; width: 100%;
 
 @keyframes luz-tv { 
   0% { background-image: radial-gradient(rgba(36, 112, 188, 0.8), rgba(56, 121, 250, 0.8)); }
-}@keyframes tv-slides {
+}@keyframes poster-l {
+  0.0% { background-image: url("/room/poster-atlas-movie.jpg"); }
+  50.0% { background-image: url("/room/poster-atlas-2.png"); }
+}
+@keyframes poster-r {
+  0.0% { background-image: url("/room/poster-passion.jpg"); }
+  33.33% { background-image: url("/room/poster-life.jpg"); }
+  66.67% { background-image: url("/room/poster-wtl.jpg"); }
+}
+@keyframes tv-slides {
   0.0% { background-image: url("/room/tv-aynrand-org.webp"); }
   16.67% { background-image: url("/room/tv-ari-aynrand-org.webp"); }
   33.33% { background-image: url("/room/tv-atlasshruggedmovie-com.webp"); }
@@ -903,7 +912,7 @@ body { display: flex; justify-content: center; align-items: center; width: 100%;
 @media (max-aspect-ratio: 1/1) { .stage { transform: scale(2.4); } }
 .tag { position: fixed; left: 0; right: 0; bottom: 1.6rem; z-index: 5; text-align: center; color: #9E99C1; font: 600 .8rem/1.2 system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; letter-spacing: .3em; text-indent: .3em; text-transform: uppercase; pointer-events: none; }
 .tag a { color: #FBFAFE; text-decoration: none; pointer-events: auto; font-size: 1.1rem; letter-spacing: .12em; display: block; margin-bottom: .5rem; }
-@media (prefers-reduced-motion: reduce) { .tv__right, .tv__right::before { animation: none !important; } }
+@media (prefers-reduced-motion: reduce) { .tv__right, .tv__right::before, .cuadro-l__front, .cuadro-r__front { animation: none !important; } }
   </style>
 </head>
 <body>
