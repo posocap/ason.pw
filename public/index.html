@@ -38,7 +38,7 @@
   }
   </script>
   <style>
-    :root { --hb: 0; --hp: 0; }
+    :root { --hb: 145; --hp: 105; }
 @charset "utf-8";
 
 *, ::after, ::before { margin: 0px; padding: 0px; box-sizing: border-box; user-select: none; transform-style: preserve-3d; -webkit-tap-highlight-color: transparent; }
@@ -917,9 +917,13 @@ body { display: flex; justify-content: center; align-items: center; width: 100%;
 .tag .more { display: inline-block; color: #c9c5ea; font-size: .95rem; letter-spacing: .3em; text-indent: .3em; text-transform: uppercase; text-decoration: none; pointer-events: auto; padding: .4rem .8rem; transition: color .25s, text-shadow .25s; }
 .tag .more:hover, .tag .more:focus-visible { color: #fff; text-shadow: 0 0 14px hsl(calc(220 + var(--hb)) 95% 75.1% / .9); outline: none; }
 .tag .more::after { content: " \2192"; display: inline-block; animation: nudge 2.2s ease-in-out 2s infinite; }
+.themes { position: fixed; top: 1rem; right: 1rem; z-index: 6; display: flex; gap: .55rem; padding: .5rem .65rem; border-radius: 2rem; background: rgba(10,10,18,.55); backdrop-filter: blur(6px); animation: tag-in 1.6s ease 1s both; }
+.themes button { width: 1.15rem; height: 1.15rem; padding: 0; border-radius: 50%; border: 2px solid rgba(255,255,255,.25); cursor: pointer; transition: transform .2s, border-color .2s; }
+.themes button:hover, .themes button:focus-visible { transform: scale(1.25); outline: none; border-color: #fff; }
+.themes button[aria-pressed="true"] { border-color: #fff; box-shadow: 0 0 10px rgba(255,255,255,.6); }
 @keyframes tag-in { from { opacity: 0; transform: translateY(14px); filter: blur(4px); } }
 @keyframes nudge { 50% { transform: translateX(5px); } }
-@media (prefers-reduced-motion: reduce) { .tag, .tag .more::after, .tv__right, .tv__right::before, .cuadro-l__front, .cuadro-r__front { animation: none !important; } }
+@media (prefers-reduced-motion: reduce) { .tag, .themes, .tag .more::after, .tv__right, .tv__right::before, .cuadro-l__front, .cuadro-r__front { animation: none !important; } }
   </style>
 </head>
 <body>
@@ -1296,6 +1300,7 @@ body { display: flex; justify-content: center; align-items: center; width: 100%;
 
 
   </div>
+  <div class="themes" role="group" aria-label="Room colour"><button type="button" data-theme="blue" aria-label="Blue" title="Blue" style="background:linear-gradient(135deg,#5474fb,#7c5cd6)"></button><button type="button" data-theme="crimson" aria-label="Red" title="Red" style="background:linear-gradient(135deg,#ff5a4d,#c2185b)"></button><button type="button" data-theme="emerald-crimson" aria-label="Green and red" title="Green and red" style="background:linear-gradient(135deg,#2fd27a 50%,#e0354f 50%)"></button><button type="button" data-theme="violet" aria-label="Purple" title="Purple" style="background:linear-gradient(135deg,#a07cff,#6a3dd1)"></button><button type="button" data-theme="amber" aria-label="Amber" title="Amber" style="background:linear-gradient(135deg,#ffd24d,#e08a1e)"></button><button type="button" data-theme="teal" aria-label="Teal" title="Teal" style="background:linear-gradient(135deg,#34d3d0,#2a7fd0)"></button></div>
   <div class="tag"><span class="name">ason.pw</span><a class="more" href="https://peikoff.net/" rel="noopener">More?</a></div>
   <script src="/room.js"></script>
 </body>
