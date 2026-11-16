@@ -167,6 +167,10 @@ function sitemap(o, posts) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    // Canonicalize: bare domain and http:// go to https://www in a single hop (only when a custom domain is configured).
+    if (env.APEX_HOST && env.WWW_HOST && (url.hostname === env.APEX_HOST || (url.hostname === env.WWW_HOST && url.protocol === "http:"))) {
+      return Response.redirect(`https://${env.WWW_HOST}${url.pathname}${url.search}`, 301);
+    }
     const ctx = { origin: (env.SITE_URL || url.origin).replace(/\/$/, "") };
     const path = url.pathname;
 
