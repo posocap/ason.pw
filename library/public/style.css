@@ -30,3 +30,5 @@ footer{border-top:1px solid var(--line);padding:2rem 1.2rem;text-align:center;co
 .post{max-width:720px}.post img{max-width:100%;height:auto;border-radius:4px}.post h2,.post h3{color:var(--gold2);margin-top:1.6em}.post blockquote{border-left:4px solid var(--gold);margin:1em 0;padding:.2rem 1rem;color:var(--mute)}.post pre,.post code{background:var(--navy2);padding:.15rem .35rem;border-radius:3px;overflow-x:auto}.post pre{padding:1rem}.post table{border-collapse:collapse;max-width:100%;display:block;overflow-x:auto}.post td,.post th{border:1px solid var(--line);padding:.4rem .6rem}
 
 .who{display:flex;gap:2rem;align-items:center;flex-wrap:wrap}.who .portrait{width:min(320px,100%);height:auto;border-radius:6px;border:2px solid var(--gold)}.who>div{flex:1;min-width:260px}
+
+.who .portrait{width:min(300px,100%);aspect-ratio:2/3;object-fit:cover}
