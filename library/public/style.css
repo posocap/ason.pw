@@ -6,7 +6,7 @@ h1,h2,h3{font-family:"Roboto Condensed","Arial Narrow",Impact,sans-serif;line-he
 header.nav{position:sticky;top:0;z-index:10;display:flex;gap:1.2rem;align-items:center;padding:.8rem 1.2rem;background:rgba(11,23,48,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 header.nav .brand{font:700 1.15rem "Roboto Condensed",Impact,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#fff;text-decoration:none;display:flex;align-items:center;gap:.6rem;margin-right:auto}
 header.nav .brand img{width:34px;height:34px;border-radius:6px}
-header.nav a.l{color:var(--mute);text-decoration:none;font-size:.95rem}header.nav a.l:hover,header.nav a.l[aria-current]{color:var(--gold2)}
+header.nav nav{display:flex;gap:1.2rem}header.nav a.l{color:var(--mute);text-decoration:none;font-size:.95rem}header.nav a.l:hover,header.nav a.l[aria-current]{color:var(--gold2)}
 .hero{position:relative;min-height:78vh;display:grid;align-items:end;background:#0b1730 url(/img/hero.jpg) center/cover}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,var(--navy) 6%,rgba(11,23,48,.35) 60%,rgba(11,23,48,.55))}
 .hero .in{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:4rem 1.2rem 3rem;width:100%}
@@ -14,7 +14,7 @@ header.nav a.l{color:var(--mute);text-decoration:none;font-size:.95rem}header.na
 .hero p{max-width:40rem;color:var(--ink);font-size:1.15rem}
 .btn{display:inline-block;background:var(--gold);color:#1a1405;font-weight:700;padding:.75rem 1.4rem;border-radius:4px;text-decoration:none;border:2px solid var(--gold2)}
 .btn:hover{background:var(--gold2);color:#1a1405}
-main{max-width:980px;margin:0 auto;padding:3rem 1.2rem}
+main{display:block}.wrap{max-width:980px;margin:0 auto;padding:3rem 1.2rem}main>h1,main>p{max-width:980px;margin-left:auto;margin-right:auto;padding:0 1.2rem}main>h1{padding-top:3rem}
 section{margin-bottom:3.5rem}
 h2{font-size:2.2rem;color:var(--gold2)}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.2rem}
@@ -24,7 +24,7 @@ ul.check{padding-left:1.2rem}ul.check li{margin:.4rem 0}
 .note{border-left:4px solid var(--gold);padding:.4rem 1rem;color:var(--mute);background:rgba(201,162,75,.07)}
 footer{border-top:1px solid var(--line);padding:2rem 1.2rem;text-align:center;color:var(--mute);font-size:.9rem}
 .page-title{padding:3rem 1.2rem 0;max-width:980px;margin:0 auto}.page-title h1{font-size:clamp(2.2rem,6vw,3.6rem);color:#fff;text-transform:uppercase}
-@media(max-width:560px){header.nav a.l{display:none}}
+
 
 .meta{color:var(--mute);font-size:.9rem;margin:.2rem 0}.post-card{display:block;text-decoration:none;color:inherit}.post-card:hover{border-color:var(--gold)}.post-card img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:4px;margin-bottom:.8rem}
 .post{max-width:720px}.post img{max-width:100%;height:auto;border-radius:4px}.post h2,.post h3{color:var(--gold2);margin-top:1.6em}.post blockquote{border-left:4px solid var(--gold);margin:1em 0;padding:.2rem 1rem;color:var(--mute)}.post pre,.post code{background:var(--navy2);padding:.15rem .35rem;border-radius:3px;overflow-x:auto}.post pre{padding:1rem}.post table{border-collapse:collapse;max-width:100%;display:block;overflow-x:auto}.post td,.post th{border:1px solid var(--line);padding:.4rem .6rem}
@@ -32,3 +32,8 @@ footer{border-top:1px solid var(--line);padding:2rem 1.2rem;text-align:center;co
 .who{display:flex;gap:2rem;align-items:center;flex-wrap:wrap}.who .portrait{width:min(320px,100%);height:auto;border-radius:6px;border:2px solid var(--gold)}.who>div{flex:1;min-width:260px}
 
 .who .portrait{width:min(300px,100%);aspect-ratio:2/3;object-fit:cover}
+
+.skip{position:absolute;left:-999px;top:0;background:var(--gold);color:#1a1405;padding:.5rem 1rem;z-index:20}.skip:focus{left:0}
+.lead{font-size:1.2rem;max-width:42rem}.crumbs{font-size:.9rem;color:var(--mute);margin:0 0 .4rem}.crumbs a{color:var(--mute)}
+footer .small{font-size:.8rem;opacity:.8}footer p{margin:.3rem 0}
+@media(max-width:560px){header.nav a.l{display:inline}header.nav nav{gap:.8rem}header.nav .brand{font-size:.95rem}}

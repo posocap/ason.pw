@@ -8,4 +8,8 @@ workers_dev = true
 directory = "./public"
 binding = "ASSETS"
 not_found_handling = "404-page"
-run_worker_first = ["/library", "/library/*", "/post/*"]
+run_worker_first = ["/", "/about", "/about/", "/library", "/library/*", "/post/*", "/robots.txt", "/sitemap.xml"]
+
+# Set SITE_URL to the final domain (e.g. https://example.com) once attached; canonical, sitemap and Open Graph URLs follow it.
+[vars]
+SITE_URL = ""
