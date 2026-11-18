@@ -1,0 +1,8 @@
+# Copy to .dev.vars (never commit). Used by `wrangler dev`.
+MCP_AUTH_TOKEN=change-me-long-random-string
+EBAY_CLIENT_ID=
+EBAY_CLIENT_SECRET=
+EBAY_USER_REFRESH_TOKEN=""
+EBAY_REDIRECT_URI=
+EBAY_ENVIRONMENT=sandbox
+# EBAY_OAUTH_SCOPES=
