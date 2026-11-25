@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Story Suite</title>
+<link rel="icon" href="/favicon.svg">
+<style>
+:root{--bg:#14110f;--panel:#1d1915;--card:#241f1a;--line:#3a322a;--ink:#f1e9dc;--mute:#a69a89;--acc:#e8a33d;--acc2:#c7623a}
+@media (prefers-color-scheme:light){:root{--bg:#f6f1e8;--panel:#fffaf0;--card:#fff;--line:#e2d8c6;--ink:#2a231b;--mute:#7a6e5c}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Georgia,'Iowan Old Style',serif}
+button,input,select,textarea{font:inherit;color:inherit}
+.btn{background:var(--acc);color:#1a1208;border:0;border-radius:8px;padding:.45rem .9rem;cursor:pointer;font:600 14px system-ui,sans-serif}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}.btn.danger{background:transparent;color:var(--acc2);border:1px solid var(--acc2)}
+#login{max-width:340px;margin:20vh auto;padding:0 16px;text-align:center}#login input{width:100%;padding:.6rem;margin:12px 0;background:var(--panel);border:1px solid var(--line);border-radius:8px}
+#app{display:none;grid-template-columns:260px 1fr;min-height:100vh}
+aside{background:var(--panel);border-right:1px solid var(--line);padding:18px 14px;position:sticky;top:0;height:100vh;overflow:auto}
+aside h1{font-size:20px;margin:0 0 14px;color:var(--acc)}
+.story{display:block;width:100%;text-align:left;background:none;border:0;border-radius:8px;padding:8px 10px;cursor:pointer;margin-bottom:2px}
+.story small{display:block;color:var(--mute);font:12px system-ui}.story.on{background:var(--card);outline:1px solid var(--line)}
+main{padding:24px clamp(16px,4vw,48px);max-width:900px;width:100%}
+.tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;align-items:center}.tab{padding:.4rem .9rem;border-radius:99px;border:1px solid var(--line);background:none;cursor:pointer;font:14px system-ui}.tab.on{background:var(--acc);color:#1a1208;border-color:var(--acc)}
+.spacer{flex:1}.status{color:var(--mute);font:13px system-ui}
+.title{width:100%;font:700 28px Georgia,serif;background:none;border:0;border-bottom:1px dashed var(--line);padding:4px 0;outline:none}
+.row{display:flex;gap:10px;margin:12px 0;flex-wrap:wrap}.row select,.row input{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:.45rem .6rem}.row input{flex:1;min-width:200px}
+.req{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:10px;padding:12px 16px;margin:12px 0 24px}
+.req h3{margin:0 0 6px;font:700 13px system-ui;text-transform:uppercase;letter-spacing:.06em;color:var(--acc)}.req li{margin:3px 0}.req span{color:var(--mute)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px}
+.card h2{margin:0;font-size:19px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}.card h2 i{font:12px system-ui;color:var(--acc);font-style:normal;border:1px solid var(--line);padding:1px 8px;border-radius:99px}
+.card .n{color:var(--acc);font-weight:700}.card p{color:var(--mute);margin:6px 0 10px;font-size:15px}
+textarea{width:100%;min-height:96px;resize:vertical;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px;line-height:1.5}
+.g{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px}.g h2{margin:0 0 4px}.g .ex{color:var(--mute);font-size:14px;margin-top:8px}
+.empty{color:var(--mute);padding:40px 0;text-align:center}
+@media(max-width:760px){#app{grid-template-columns:1fr}aside{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line)}}
+</style>
+</head>
+<body>
+<form id="login"><h1>Story Suite</h1><input id="tok" type="password" placeholder="Access token" autocomplete="current-password" required><button class="btn">Unlock</button><p id="lerr" class="status"></p></form>
+<div id="app">
+  <aside><h1>🐱 Story Suite</h1><button class="btn" id="new" style="width:100%;margin-bottom:12px">+ New story</button><div id="list"></div></aside>
+  <main>
+    <div class="tabs"><button class="tab on" data-t="beats">Beat sheet</button><button class="tab" data-t="genres">Genre guide</button><span class="spacer"></span><span class="status" id="status"></span><button class="btn ghost" id="export">Export Word</button></div>
+    <div id="view"></div>
+  </main>
+</div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

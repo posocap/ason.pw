@@ -19,3 +19,11 @@ This is the Worker's own repo (moved out of `asonpeikoff.com`'s `ason-pw/` subdi
 ```bash
 npx wrangler deploy
 ```
+
+## Story suite (`/story`)
+
+A private Save the Cat workspace: 15 beat cards with prompts, 10 genre guides (3 required elements each), per-story saves, and Word export (a section per beat with a small reminder header, then your text).
+
+- UI: `public/story/` (static; `data.js` holds the beats and genres). The browser stores the access token in localStorage.
+- API: `src/story.js` → `/api/story/*`, Bearer-token auth against the `STORY_TOKEN` secret, stories in D1 (`ason-pw-story`, binding `DB`, schema in `migrations/`).
+- Set the token once: `npx wrangler secret put STORY_TOKEN`

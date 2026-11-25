@@ -1,4 +1,5 @@
 import ogImage from "./og-image.js";
+import { handleStory } from "./story.js";
 
 const CANONICAL_HOST = "www.ason.pw";
 
@@ -14,6 +15,10 @@ export default {
       url.hostname = CANONICAL_HOST;
       url.port = "";
       return Response.redirect(url.toString(), 301);
+    }
+
+    if (url.pathname === "/story" || url.pathname.startsWith("/story/") || url.pathname.startsWith("/api/story/")) {
+      return handleStory(request, env, url);
     }
 
     if (url.pathname === "/og.png") {
