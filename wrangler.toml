@@ -23,6 +23,5 @@ database_name = "ason-pw-story"
 database_id = "ed172700-1af5-463c-bd10-8235f9a45d88"
 migrations_dir = "migrations"
 
-# Secret (set with `wrangler secret put STORY_TOKEN`): the access token for /story.
 
 [previews]

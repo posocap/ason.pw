@@ -1,14 +1,22 @@
-// Token-protected story API: /api/story/* (D1 CRUD). The UI at /story/ is static; the browser keeps the token.
+// Token-protected story API (D1): /api/story/* (D1 CRUD). The UI at /story/ is static; the browser keeps the token.
 const enc = new TextEncoder();
 const json = (obj, status = 200) =>
   new Response(JSON.stringify(obj), { status, headers: { "Content-Type": "application/json", "Cache-Control": "no-store" } });
 
+// No secret to configure: the first token entered at /story is claimed and stored (hashed) in D1.
+async function sha(v) {
+  return [...new Uint8Array(await crypto.subtle.digest("SHA-256", enc.encode(v)))].map((x) => x.toString(16).padStart(2, "0")).join("");
+}
 async function tokenOk(request, env) {
   const given = (request.headers.get("Authorization") || "").replace(/^Bearer\s+/i, "");
-  if (!env.STORY_TOKEN || !given) return false;
-  const [a, b] = await Promise.all([given, env.STORY_TOKEN].map((v) => crypto.subtle.digest("SHA-256", enc.encode(v))));
-  const x = new Uint8Array(a), y = new Uint8Array(b);
-  return x.every((v, i) => v === y[i]);
+  if (!given) return false;
+  const h = await sha(given);
+  const row = await env.DB.prepare("SELECT value FROM settings WHERE key = 'token_hash'").first();
+  if (!row) {
+    await env.DB.prepare("INSERT OR IGNORE INTO settings (key, value) VALUES ('token_hash', ?)").bind(h).run();
+    return true;
+  }
+  return row.value === h;
 }
 
 export async function handleStory(request, env, url) {

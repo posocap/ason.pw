@@ -25,5 +25,5 @@ npx wrangler deploy
 A private Save the Cat workspace: 15 beat cards with prompts, 10 genre guides (3 required elements each), per-story saves, and Word export (a section per beat with a small reminder header, then your text).
 
 - UI: `public/story/` (static; `data.js` holds the beats and genres). The browser stores the access token in localStorage.
-- API: `src/story.js` → `/api/story/*`, Bearer-token auth against the `STORY_TOKEN` secret, stories in D1 (`ason-pw-story`, binding `DB`, schema in `migrations/`).
-- Set the token once: `npx wrangler secret put STORY_TOKEN`
+- API: `src/story.js` → `/api/story/*`, Bearer-token auth (the first token entered is claimed and stored hashed in D1; no secret to set), stories in D1 (`ason-pw-story`, binding `DB`, schema in `migrations/`).
+- To reset the token: `npx wrangler d1 execute ason-pw-story --remote --command "DELETE FROM settings"`, then enter a new one at `/story`.
