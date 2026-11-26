@@ -17,4 +17,11 @@ run_worker_first = true
 
 # Required by Worker Previews (non-production branch builds). Previews do not
 # inherit production settings; this Worker has no bindings or vars to repeat.
+[[d1_databases]]
+binding = "DB"
+database_name = "ason-pw-story"
+database_id = "ed172700-1af5-463c-bd10-8235f9a45d88"
+migrations_dir = "migrations"
+
+
 [previews]
