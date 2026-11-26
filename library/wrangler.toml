@@ -4,6 +4,11 @@ compatibility_date = "2025-09-01"
 account_id = "ead8c29b274aa64bceed0bfa1c9b4550"
 workers_dev = true
 
+routes = [
+  { pattern = "asonpeikofflibrary.com", custom_domain = true },
+  { pattern = "www.asonpeikofflibrary.com", custom_domain = true }
+]
+
 [assets]
 directory = "./public"
 binding = "ASSETS"
@@ -12,8 +17,8 @@ run_worker_first = ["/", "/about", "/about/", "/library", "/library/*", "/post/*
 
 # Set SITE_URL to the final domain (e.g. https://example.com) once attached; canonical, sitemap and Open Graph URLs follow it.
 [vars]
-SITE_URL = ""
+SITE_URL = "https://www.asonpeikofflibrary.com"
 # When the domain is attached, set (for example):
 #   SITE_URL = "https://www.example.com", WWW_HOST = "www.example.com", APEX_HOST = "example.com"
-WWW_HOST = ""
-APEX_HOST = ""
+WWW_HOST = "www.asonpeikofflibrary.com"
+APEX_HOST = "asonpeikofflibrary.com"
