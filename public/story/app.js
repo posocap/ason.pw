@@ -63,15 +63,19 @@
     if (!cur) { v.innerHTML = '<div class="empty">Create a story to start working through the beats.</div>'; return; }
     cur.data = cur.data || {}; cur.data.beats = cur.data.beats || {};
     const g = genres.find((x) => x.key === cur.genre);
+    const done = beats.filter((b) => (cur.data.beats[b.key] || "").trim()).length;
     v.innerHTML = `<input class="title" value="${esc(cur.title)}" aria-label="Title">
-      <div class="row"><select id="genre"><option value="">Genre…</option>${genres.map((x) => `<option value="${x.key}" ${x.key === cur.genre ? "selected" : ""}>${esc(x.name)}</option>`).join("")}</select><input id="logline" placeholder="Logline (one sentence)" value="${esc(cur.logline)}"></div>
+      <input id="logline" class="logline" placeholder="Logline (one sentence)" value="${esc(cur.logline)}">
+      <div class="chips">${genres.map((x) => `<button class="chip ${x.key === cur.genre ? "on" : ""}" data-g="${x.key}">${esc(x.name)}</button>`).join("")}</div>
+      ${g ? `<div class="status" style="margin-top:10px">${esc(g.blurb)} <i>e.g. ${esc(g.examples)}</i></div>` : '<div class="status" style="margin-top:10px">Pick a genre to see its 3 required elements.</div>'}
       ${genreBox(g)}
-      ${beats.map((b, i) => `<div class="card"><h2><span class="n">${i + 1}</span>${esc(b.name)}<i>${esc(b.pages)} · ${esc(b.pct)}</i></h2><p>${esc(b.prompt)}</p><textarea data-k="${b.key}" placeholder="What happens in this story at this beat…">${esc(cur.data.beats[b.key] || "")}</textarea></div>`).join("")}
+      <div class="prog"><div style="width:${Math.round((done / beats.length) * 100)}%"></div></div><div class="status" id="prog">${done} of ${beats.length} beats written</div>
+      ${beats.map((b, i) => `${window.STC.acts[b.key] ? `<h3 class="act">${esc(window.STC.acts[b.key])}</h3>` : ""}<div class="card"><h2><span class="n">${i + 1}</span>${esc(b.name)}<i>${esc(b.pct)} · ${esc(b.pages)}</i></h2><p>${esc(b.prompt)}</p><textarea data-k="${b.key}" placeholder="What happens in this story at this beat…">${esc(cur.data.beats[b.key] || "")}</textarea></div>`).join("")}
       <button class="btn danger" id="del">Delete this story</button>`;
+    v.querySelectorAll(".chip").forEach((c) => (c.onclick = () => { cur.genre = cur.genre === c.dataset.g ? null : c.dataset.g; save(); render(); }));
     $(".title").oninput = (e) => { cur.title = e.target.value; save(); };
-    $("#genre").onchange = (e) => { cur.genre = e.target.value || null; save(); render(); };
     $("#logline").oninput = (e) => { cur.logline = e.target.value; save(); };
-    v.querySelectorAll("textarea").forEach((t) => (t.oninput = () => { cur.data.beats[t.dataset.k] = t.value; save(); }));
+    v.querySelectorAll("textarea").forEach((t) => (t.oninput = () => { cur.data.beats[t.dataset.k] = t.value; save(); const n = beats.filter((b) => (cur.data.beats[b.key] || "").trim()).length; $("#prog").textContent = `${n} of ${beats.length} beats written`; $(".prog div").style.width = Math.round((n / beats.length) * 100) + "%"; }));
     $("#del").onclick = async () => {
       if (!confirm(`Delete “${cur.title}”? This can't be undone.`)) return;
       await api("stories/" + cur.id, { method: "DELETE" }); stories = stories.filter((s) => s.id !== cur.id); cur = null; timer = null;
