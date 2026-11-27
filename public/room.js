@@ -27,3 +27,28 @@ let saved = null;
 try { saved = localStorage.getItem("room-theme"); } catch (e) {}
 setTheme(new URLSearchParams(location.search).get("theme") || saved || "crimson");
 buttons.forEach((b) => b.addEventListener("click", () => setTheme(b.dataset.theme, true)));
+
+// Focus audio player: one-click play/pause for the 20-minute loop on /focus/.
+const focusAudio = document.getElementById("focus-audio");
+const focusBtn = document.getElementById("focus-player");
+if (focusAudio && focusBtn) {
+  const focusLabel = focusBtn.querySelector("span");
+  focusBtn.addEventListener("click", async (e) => {
+    e.stopPropagation();
+    if (focusAudio.paused) {
+      try {
+        await focusAudio.play();
+        focusBtn.classList.add("playing");
+        focusBtn.setAttribute("aria-pressed", "true");
+        focusBtn.setAttribute("aria-label", "Pause focus audio");
+        focusLabel.textContent = "Playing";
+      } catch (err) { /* play() can fail if the file is unreachable; leave the button as-is */ }
+    } else {
+      focusAudio.pause();
+      focusBtn.classList.remove("playing");
+      focusBtn.setAttribute("aria-pressed", "false");
+      focusBtn.setAttribute("aria-label", "Play focus audio");
+      focusLabel.textContent = "Focus audio";
+    }
+  });
+}
